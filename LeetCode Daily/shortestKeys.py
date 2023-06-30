@@ -28,3 +28,5 @@ class Solution(object):
                         visited.add((x, y, found))
                         arr.append((x, y, found, steps + 1))
         return -1
+
+#test
