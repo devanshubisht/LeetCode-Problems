@@ -9,7 +9,7 @@ public:
                 break;
             left--,right++;
         }
-        if(ans.size() < right - left )
+        if(ans.size() < right - left - 1)
             ans = s.substr(left + 1 , right - left - 1);
     }
     string longestPalindrome(string s) {
