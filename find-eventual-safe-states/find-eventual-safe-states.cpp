@@ -13,16 +13,21 @@ public:
         set<int> cycle;
 
         for (int i = 0 ; i < graph.size() ; i++) {
-            if (dfs(terminal , i , visited, graph, global, cycle)) {
+            if (visited[i] != 1) {
+                dfs(i, visited, graph, global);
+            }
+        }
+        for (int i = 0 ; i < global.size() ; i ++) {
+            if (global[i] == 1){
                 result.push_back(i);
             }
         }
         return result;
+        
     }
 
-    bool dfs(vector<int>& terminal, int node, vector<int>& visited, vector<vector<int>>& graph, vector<int>& global, set<int>& cycle) {
-        if (visited[node] == 1 || cycle.find(node) != cycle.end()) {
-            cycle.insert(node);
+    bool dfs(int node, vector<int>& visited, vector<vector<int>>& graph, vector<int>& global) {
+        if (visited[node] == 1) {
             return false;
         }
 
@@ -30,17 +35,10 @@ public:
             return true;
         }
 
-        for (int i =0 ; i < terminal.size() ; i ++) {
-            if (terminal[i] == node) {
-                return true;
-            }
-        }
         visited[node] = 1;
         global[node] = 1;
         for (int i = 0 ; i < graph[node].size() ; i ++) {
-            if (!dfs(terminal, graph[node][i], visited, graph, global,  cycle)) {
-                cycle.insert(node);
-                visited[node] = -1;
+            if (!dfs(graph[node][i], visited, graph, global)) {
                 global[node] = -1;
                 return false;
             }
