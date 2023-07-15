@@ -15,30 +15,17 @@ public:
             return dp[index][k];
         }
 
-        vector<int> temp = {events[index][1],INT_MAX,INT_MAX};
-        int next = upper_bound(events.begin()+index+1, events.end(), temp)-events.begin();
+        int lo = index + 1, hi = events.size();
+        while(lo < hi) {
+            int mid = lo + (hi - lo) / 2;
+            if(events[mid][0] <= events[index][1]) lo = mid + 1;
+            else hi = mid;
+        }
 
-
-        int c1 = events[index][2] + helper(events, next, k-1, dp);
+        int c1 = events[index][2] + helper(events, lo, k-1, dp);
         int c2 = helper(events, index + 1, k, dp);
 
         return dp[index][k] = max(c1,c2);
     }
-    // int bs(vector<vector<int>>& events, int index) {
-    //     int i = 0 ;
-    //     int j = events.size() -1;
-    //     while (i <=j) {
-    //         int mid = i + (j-i)/2;
-    //         int val = events[mid][0];
-    //         if (index<val) {
-    //             j = mid -1;
-    //         }
-    //         else if (index > val) {
-    //             i = mid+ 1;
-    //         } else {
-    //             return mid;
-    //         }
-    //     }
-    //     return -1;
-    // }
+
 };
