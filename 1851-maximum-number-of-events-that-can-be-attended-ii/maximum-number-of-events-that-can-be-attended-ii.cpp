@@ -29,3 +29,21 @@ public:
     }
 
 };
+
+// int BS(int index,vector<vector<int>>&events,int value)
+// {
+//     int lo = index;
+//     int hi = events.size()-1;
+//     int req = -1;
+//     while(hi>=lo)
+//     {
+//       int mid = lo+(hi-lo)/2;
+//       if(events[mid][0] > value)
+//       {
+//         req = mid;
+//         hi = mid-1;
+//       }
+//       else lo = mid+1;
+//     }
+//     return req;
+// }
