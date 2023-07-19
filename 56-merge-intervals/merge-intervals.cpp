@@ -3,9 +3,7 @@ public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
         vector<vector<int>> result;
 
-        sort(intervals.begin(), intervals.end(), [](const std::vector<int>& a, const std::vector<int>& b) {
-        return a[0] < b[0];
-    });
+        sort(intervals.begin(), intervals.end());
 
         if (intervals.size() <= 1) {
             return intervals;
