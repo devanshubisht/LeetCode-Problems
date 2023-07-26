@@ -1,18 +1,15 @@
 class Solution {
-public:
+    public:
     bool canJump(vector<int>& nums) {
-        for (int i = 0 ; i < nums.size() -1; i++) {
-            if (nums[i] == 0) {
-                int x = i -1;
-                while (x >= 0 ) {
-                    if(x + nums[x] > i) {
-                        break;
-                    }
-                    x--;
-                }
-                if (x==-1) return false;
-            }
+     
+        int n=nums.size();
+        int reachable=0;
+        
+        for(int i=0;i<n;i++){
+            if(i>reachable) return false;
+            reachable=max(reachable,i+nums[i]);
         }
         return true;
+        
     }
 };
