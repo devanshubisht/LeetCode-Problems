@@ -11,7 +11,7 @@ public:
         return result;
         
     }
-    void dfs(int k, vector<int> numbers, vector<int> t, int i) {
+    void dfs(int k, vector<int>& numbers, vector<int>& t, int i) {
         if (t.size() == k) {
             result.push_back(t);
             return;
