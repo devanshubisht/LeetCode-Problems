@@ -4,6 +4,7 @@ public:
         vector<vector<int>> dp (2, vector<int> (prices.size(), -1));
         dfs(dp, 0, 1, prices);
         return max(dp[0][0], dp[1][0]);
+        //top down returns the answer in the first !!
     }
 
     int dfs(vector<vector<int>>& dp, int index, int canbuy, vector<int>& prices){
