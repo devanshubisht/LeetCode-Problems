@@ -3,29 +3,20 @@ public:
     
     vector<vector<int>> dp;
     int change(int amount, vector<int>& coins) {
-        dp.resize(coins.size() + 1,vector<int>(amount + 1,-1));
-        return dfs(amount, coins, 0);
-        
-    }
-
-    int dfs(int amount, vector<int>& coins, int index) {
-        if (amount == 0) {
-            
-            return 1;
-        } 
-        if (amount < 0 || index >= coins.size()) {
-            return 0;
+        dp.resize(coins.size() + 1,vector<int>(amount + 1,0));
+        for (int i = 0 ; i < dp.size(); i ++) {
+            dp[i][0] = 1;
         }
 
-        if (dp[index][amount] != -1) {
-            return dp[index][amount];
+        for (int i = 1; i < dp.size();i++) {
+            for (int j = 1; j < dp[0].size(); j++) {
+                dp[i][j] = dp[i-1][j];
+                if (j - coins[i-1] >= 0) {
+                    dp[i][j] += dp[i][j-coins[i-1]];
+                }
+            }
         }
-
-        int ways = 0;
-        for (int i = index ; i < coins.size() ; i ++) {
-            ways += dfs(amount - coins[i], coins, i);
-        }
-        return dp[index][amount] = ways;
+        return dp[coins.size()][amount];
 
     }
 
