@@ -23,3 +23,4 @@ public:
 
 // approach is to iteracte backwards. when u iterate backwards, firstly keep track of the hottest day.
 // when u hit a non hottest day. compare it to the next day. if next day less, use that day's answer to jump and see if that day is more. 
+// for this approach, when u go to the next day. if smaller. u take the answer of that day and then u add it to the days being tracked from that day.
