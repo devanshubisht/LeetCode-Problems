@@ -27,7 +27,7 @@ public:
         }
         
         after_curr->next = nullptr;
-        before_curr->next = after.next;
+        before_curr->next = after.next; // for listnode object need to use . instead of ->
         
         return before.next;
 
