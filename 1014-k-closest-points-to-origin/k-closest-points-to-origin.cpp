@@ -17,6 +17,6 @@ private:
     struct compare {
         bool operator()(vector<int>& p, vector<int>& q) {
             return p[0] * p[0] + p[1] * p[1] > q[0] * q[0] + q[1] * q[1];
-        } //if true, no swap.
+        } // first to be popper
     };
 };
