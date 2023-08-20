@@ -1,11 +1,7 @@
 class Solution {
 public:
     vector<vector<int>> kClosest(vector<vector<int>>& points, int k) {
-        priority_queue<vector<int>, vector<vector<int>>, compare> pq;
-
-        for (int i = 0; i< points.size(); i++ ) {
-            pq.push(points[i]);
-        }
+        priority_queue<vector<int>, vector<vector<int>>, compare> pq (points.begin(), points.end());
         vector<vector<int>> res;
         while (k>0) {
             vector<int> first = pq.top();
