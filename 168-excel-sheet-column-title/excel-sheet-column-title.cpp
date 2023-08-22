@@ -15,3 +15,5 @@ public:
         return ans;
     }
 };
+
+// the aproach is like that of a number system!
