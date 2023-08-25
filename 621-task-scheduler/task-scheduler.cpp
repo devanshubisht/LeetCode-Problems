@@ -30,7 +30,6 @@ public:
                 break;
             }
             time += cycle;
-
         }
         return time;
     }
