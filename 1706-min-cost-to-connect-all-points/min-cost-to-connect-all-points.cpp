@@ -26,8 +26,8 @@ public:
             visited[i] = 1;
             result += dist;
             connected++;
-            for(int j = 0  ; j < points.size(); j++) {
-                if (!visited[j]){
+            for(int j = 0 ; j < points.size(); j++) {
+                if (!visited[j]){ // need to re evaluate from every single one because previous one may not be detected yet
                 int dist = abs(points[i][0] - points[j][0]) + abs(points[i][1] - points[j][1]);
                 min_heap.push({dist,j});
                 }
