@@ -8,12 +8,13 @@ public:
     }
 
     void dfs(vector<int>& nums, int i, vector<int>& res) {
-        result.push_back(res);
+        result.push_back(res);    
         for (int j = i; j < nums.size(); j++) {
             res.push_back(nums[j]);
             dfs(nums, j+1, res);
             res.pop_back();
         }
+        
     }
 
 };
