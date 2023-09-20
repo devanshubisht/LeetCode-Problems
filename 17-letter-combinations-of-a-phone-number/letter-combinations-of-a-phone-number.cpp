@@ -21,7 +21,7 @@ public:
         }
         
         int digit = digits[i] - '0';
-        const string& characters = pad[digit];
+        const string characters = pad[digit];
         
         for (char ch : characters) {
             temp.push_back(ch);
