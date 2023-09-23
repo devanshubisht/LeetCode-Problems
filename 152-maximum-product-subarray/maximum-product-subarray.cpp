@@ -1,22 +1,23 @@
 class Solution {
 public:
     int maxProduct(vector<int>& nums) {
+        int minSoFar = 1;
+        int maxSoFar = 1;
+
         int result = nums[0];
-        int localMin = 1;
-        int localMax = 1;
-        for (int i = 0 ; i < nums.size() ; i++) {
-            if (nums[i] == 0 ) {
-                localMin = 1;
-                localMax = 1;
+        for(int i = 0 ; i < nums.size(); i++) {
+            if (nums[i] == 0) {
+                minSoFar = 1;
+                maxSoFar = 1;
                 result = max(result, nums[i]);
                 continue;
             }
-            int x = nums[i] * localMax, y = nums[i]*localMin;
-            localMin = min(min(nums[i], x) ,y);
-            localMax = max(max(nums[i], x) ,y);
-            result = max(result, localMax);
+            int x = minSoFar * nums[i];
+            int y = maxSoFar * nums[i];
+            minSoFar = min(min(x, nums[i]),y);
+            maxSoFar = max(max(x, nums[i]),y);
+            result = max(result,maxSoFar);
         }
         return result;
-
     }
 };
