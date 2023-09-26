@@ -9,7 +9,6 @@ public:
             res.push_back(first);
             k--;
         }
-
         return res;
     }
 
