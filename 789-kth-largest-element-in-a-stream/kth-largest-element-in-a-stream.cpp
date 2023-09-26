@@ -4,7 +4,16 @@ public:
     int j;
     KthLargest(int k, vector<int>& nums) {
         j = k;
-        for(int x:nums)add(x);
+        for (int i = 0 ; i < nums.size(); i++) {
+            if (i >= k) {
+                if (pq.top() < nums[i]) {
+                    pq.pop();
+                    pq.push(nums[i]);
+                } 
+            } else {
+                pq.push(nums[i]);
+            }
+        }
     }
 
     int add(int val) {
