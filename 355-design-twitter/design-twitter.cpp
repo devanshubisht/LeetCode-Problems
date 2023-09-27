@@ -13,26 +13,25 @@ public:
         k++;
     }
     
-vector<int> getNewsFeed(int userId) {
-    priority_queue<pair<int,int>, vector<pair<int,int>>> maxHeap;
-    vector<pair<int,int>> allTweets = tweets[userId];
-    for (auto frnd: frnds[userId]) {
-        for (int j = 0; j < tweets[frnd].size(); j++) {
-            maxHeap.push(tweets[frnd][j]);
+    vector<int> getNewsFeed(int userId) {
+        priority_queue<pair<int,int>, vector<pair<int,int>>> maxHeap;
+        for (auto frnd: frnds[userId]) {
+            for (int j = 0 ; j < tweets[frnd].size() ; j++) {
+                maxHeap.push(tweets[frnd][j]);
+            }
         }
+        for (int i = 0 ; i < tweets[userId].size() ; i++) {
+            maxHeap.push(tweets[userId][i]);
+        }
+        vector<int> result;
+        int count = 0;
+        while (!maxHeap.empty() && count < 10) {
+            result.push_back(maxHeap.top().second);
+            maxHeap.pop();
+            count++;
+        }
+        return result;
     }
-    for (int i = 0; i < tweets[userId].size(); i++) {
-        maxHeap.push(tweets[userId][i]);
-    }
-    vector<int> result;
-    int count = 0;
-    while (!maxHeap.empty() && count < 10) {
-        result.push_back(maxHeap.top().second);
-        maxHeap.pop();
-        count++;
-    }
-    return result;
-}
     
     void follow(int followerId, int followeeId) {
         frnds[followerId].insert(followeeId);
