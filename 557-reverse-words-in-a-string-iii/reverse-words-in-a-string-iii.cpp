@@ -14,7 +14,7 @@ public:
         
     }
 
-    string reverseWord(const string& s) {
+    string reverseWord(string s) {
         string newWord;
         for (int i = s.size() - 1; i>= 0 ; i--) {
             newWord.push_back(s[i]);
