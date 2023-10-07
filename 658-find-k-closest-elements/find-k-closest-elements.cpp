@@ -2,12 +2,10 @@ class Solution {
 public:
     vector<int> findClosestElements(vector<int>& arr, int k, int x) {
         vector<int> result;
-        int i = 0;
-        while (i < arr.size() && arr[i] < x) {
-            i++;
-        }
+        auto it = std::lower_bound(arr.begin() , arr.end(), x);
+        int i = std::distance(arr.begin(), it);
 
-        int left = i -1 ;
+        int left = i-1;
         int right = i;
 
         while (result.size() != k) {
