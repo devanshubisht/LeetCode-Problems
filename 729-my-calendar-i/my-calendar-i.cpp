@@ -9,12 +9,11 @@ public:
         m[start] = end;
         auto it = m.find(start);
         if (it != m.begin()) {
-            it--;
-            if (it->second > start || it->first== start ) {
+            auto val = prev(it);
+            if (val->second > start || val->first== start ) {
                 m.erase(start);
                 return false;
             }
-            it++;
         }
         it++;
         if (it != m.end()) {
