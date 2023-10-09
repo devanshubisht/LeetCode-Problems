@@ -17,7 +17,7 @@ public:
     }
     
     string get() {
-        string val = it->second;
+        const string& val = it->second;
         it++;
         return val;
     }
