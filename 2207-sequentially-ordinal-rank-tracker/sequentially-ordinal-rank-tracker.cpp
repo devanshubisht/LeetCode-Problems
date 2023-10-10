@@ -1,34 +1,27 @@
 class SORTracker {
 public:
-    struct cmp{
-        bool operator() (pair<string, int> a, pair<string, int> b) const{
-            if(a.second == b.second) return a.first < b.first;
-            else return a.second > b.second;
-        }
-    };
-    
-    set<pair<string, int>, cmp> s;
-    set<pair<string, int>>::iterator it;
-    
+    std::set<pair<int,string>> s;
+    set<pair<int,string>>::iterator it;
     SORTracker() {
-        s.insert({"", INT_MIN});
-        it = s.begin();
     }
-
+    
     void add(string name, int score) {
-        auto [_name, _score] = *it;
-        if((_score < score) || (score == _score && _name > name)){
-            s.insert({name, score});
-            --it;
+        auto it1 = s.insert({-score,name}).first;
+        if (s.size() == 1) {
+            it = s.begin();
+            return;
         } 
-        else s.insert({name, score});
+        if (*it1  < *it) {
+            it--;
+        }
     }
     
     string get() {
-        string ans = it++->first;
-        return ans;
+        string val = it->second;
+        it++;
+        return val;
     }
-};;
+};
 
 /**
  * Your SORTracker object will be instantiated and called as such:
