@@ -14,7 +14,7 @@ public:
 
     class Compare {
     public:
-        bool operator()(vector<int>& p, vector<int>& q) {
+        bool operator()(vector<int>& p, vector<int>& q) const {
             return p[0] * p[0] + p[1] * p[1] > q[0] * q[0] + q[1] * q[1];
         } // first to be popper
     };
