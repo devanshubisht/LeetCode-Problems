@@ -16,7 +16,6 @@ public:
             for (int i = 0 ; i < s; i++) {
                 pair<int,int> val = q.front();
                 q.pop();
-                rooms[val.first][val.second] = min(dist, rooms[val.first][val.second]);
                 for (int j = 0 ; j < 4 ; j ++) {
                     int nextX = val.first + dir[j];
                     int nextY = val.second + dir[j+1];
@@ -25,10 +24,10 @@ public:
                         rooms[nextX][nextY] == -1 || rooms[nextX][nextY] != INT_MAX) {
                             continue;
                         }
+                    rooms[nextX][nextY] = rooms[val.first][val.second] + 1;
                     q.push({nextX,nextY});
                 }
             }
-            dist++;
         }
     }
 };
