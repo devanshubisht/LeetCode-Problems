@@ -7,25 +7,24 @@ public:
         //top down returns the answer in the first !!
     }
 
-    int dfs(vector<vector<int>>& dp, int index, int canbuy, vector<int>& prices){
-        if (index >= prices.size() ) {
+    int dfs(vector<vector<int>>& dp, int index, int canBuy, vector<int>& prices) {
+        if (index >= prices.size()) {
             return 0;
         }
 
-        if (dp[canbuy][index]!= -1) {
-            return dp[canbuy][index];
+        if (dp[canBuy][index] != -1) {
+            return dp[canBuy][index];
         }
 
-        if (canbuy) {
-            int buying = dfs(dp, index +1, 0, prices) - prices[index];
-            int hold = dfs(dp, index + 1, canbuy, prices);
-            dp[canbuy][index] = max(buying, hold);
-
+        if (canBuy) {
+            int hold = 0 + dfs(dp, index + 1, canBuy, prices);
+            int buy = dfs(dp, index + 1, !canBuy, prices) - prices[index];
+            dp[canBuy][index] = max(hold,buy);
         } else {
-            int selling = dfs(dp, index + 2, 1, prices) + prices[index] ;
-            int hold = dfs(dp, index + 1, canbuy, prices);
-            dp[canbuy][index] = max(selling, hold);
+            int hold = 0 + dfs(dp, index + 1, canBuy, prices);
+            int sell = prices[index] + dfs(dp, index + 2, !canBuy, prices);
+            dp[canBuy][index] = max(hold,sell);
         }
-        return dp[canbuy][index];
+        return dp[canBuy][index];
     }
 };
