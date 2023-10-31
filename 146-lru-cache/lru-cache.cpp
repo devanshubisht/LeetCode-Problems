@@ -13,6 +13,7 @@ class LRUCache
             if(m.find(key)==m.end())
                 return -1;
             l.splice(l.begin(),l,m[key]);
+            m[key] = l.begin();
             return m[key]->second;
         }
         void put(int key, int value)
