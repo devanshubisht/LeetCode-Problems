@@ -21,6 +21,7 @@ class LRUCache
             if(m.find(key)!=m.end())
             {
                 l.splice(l.begin(),l,m[key]);
+                m[key] = l.begin();
                 m[key]->second=value;
                 return;
             }
