@@ -10,7 +10,7 @@ public:
             leftProduct[i] = nums[i] * leftProduct[i-1];
         }
 
-        rightProduct[nums.size() - 1] = nums[nums.size() - 1];
+        rightProduct[nums.size() - 1] = *(nums.end() - 1);
         
         for (int i = nums.size() - 2 ; i >= 0 ; i--) {
             rightProduct[i] = nums[i] * rightProduct[i+1];
