@@ -3,16 +3,23 @@ public:
     vector<int> dailyTemperatures(vector<int>& temperatures) {
         vector<int> ans(temperatures.size(), 0);
         int hottest = 0;
-        for (int i = temperatures.size() -1; i >=0; i-- ) {
-            if (temperatures[i]>= hottest) {
-                hottest = temperatures[i];
-                continue;
+        stack<pair<int,int>> st;
+        for (int i = 0; i < temperatures.size(); i++ ) {
+            if (st.empty() || st.top().first >= temperatures[i]) {
+                st.push({temperatures[i], i});
+            } else {
+                while (!st.empty() && st.top().first < temperatures[i]) {
+                    pair<int,int> top = st.top();
+                    st.pop();
+                    ans[top.second] = i - top.second;
+                }
+                st.push({temperatures[i], i});
             }
-            int days =  1;
-            while (temperatures[i + days] <= temperatures[i]) {
-                days += ans[i + days];
-            }
-            ans[i] = days;
+        }
+        while (!st.empty()) {
+            pair<int,int> top = st.top();
+            st.pop();
+            ans[top.second] = 0;
         }
         return ans;
     }
