@@ -1,14 +1,9 @@
 class Solution {
 public:
     string removeOccurrences(string s, string part) {
-        for (int i = 0 ; i < s.size() ; ++i) {
-            if (s[i] == part[0]) {   
-                if (s.substr(i, part.size()) == part) {
-                    string val = s.substr(0, i) + s.substr(i + part.size(), s.size() - i - part.size() + 1);
-                    return removeOccurrences(val, part);
-                }
-            }
+        while(s.length()!=0 && s.find(part)!= string::npos){
+            s.erase(s.find(part),part.length());
         }
         return s;
-    }
+    } 
 };
