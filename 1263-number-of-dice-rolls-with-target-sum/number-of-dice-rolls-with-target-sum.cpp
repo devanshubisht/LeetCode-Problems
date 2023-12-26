@@ -4,7 +4,8 @@ public:
     int numRollsToTarget(int n, int k, int target) {
         vector<vector<int>> vec(target + 1, vector<int>(n + 1, -1));
 
-        return recurse(n, k ,target, vec);
+        recurse(n, k ,target, vec);
+        return vec[target][n];
     }
 
     int recurse(int n , int k , int target, vector<vector<int>>& dp) {
