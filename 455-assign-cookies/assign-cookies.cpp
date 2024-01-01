@@ -12,7 +12,8 @@ public:
                 result++;
                 r++;
             }
-            l++;
+            l
+            ++;
         }
         return result;
     }
