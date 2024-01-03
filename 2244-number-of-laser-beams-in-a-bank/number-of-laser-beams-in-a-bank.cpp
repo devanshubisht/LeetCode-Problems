@@ -11,9 +11,9 @@ public:
                second = numberInRow(bank[i]);
             }
             if (first != 0 && second != 0) {
-            total += first * second;
-               first = second;
-               second = 0;
+                total += first * second;
+                first = second;
+                second = 0;
             }
         }
         return total;
