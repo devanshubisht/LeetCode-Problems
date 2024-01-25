@@ -11,8 +11,6 @@ public:
                 }
             }
         }
-
         return dp[text1.size()][text2.size()];
-        
     }
 };
