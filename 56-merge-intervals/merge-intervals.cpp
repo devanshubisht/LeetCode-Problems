@@ -1,29 +1,27 @@
 class Solution {
 public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
-        vector<vector<int>> result;
-
-        sort(intervals.begin(), intervals.end());
-
-        if (intervals.size() <= 1) {
-            return intervals;
+        map<int, int> line;
+        for(auto& i : intervals){
+            ++line[i[0]];
+            --line[i[1]];
         }
-        vector<int> prev = intervals[0];
-        result.push_back(prev);
-        for (int i = 1 ; i < intervals.size(); i ++) {
-            vector<int> new_interval;
-            if (prev[1] >= intervals[i][0]) {
-                result.erase(result.end());
-                new_interval.push_back(min(prev[0], intervals[i][0]));
-                new_interval.push_back(max(prev[1], intervals[i][1]));
-                result.push_back(new_interval);
-                prev = new_interval;
-                continue;
-            }  else {
-                result.push_back(intervals[i]);
-                prev = intervals[i];
-            }
+       
+        int count = 0;
+        vector<vector<int>> ans;
+        int start = 0;
+        for(auto& i : line){
+            // that means its a new start, store the start
+           if(count ==0){
+               start = i.first;
+           }
+           count += i.second;
+           // this mean interval ends, and we can push this as answer
+           if(count==0){
+               ans.push_back({start, i.first});
+           }
         }
-        return result;
+        return ans;
     }
-};
+}; 
+
