@@ -3,11 +3,10 @@ public:
     int subarraysDivByK(vector<int>& nums, int k) {
         int count = 0;
         unordered_map<int,int> hm;
-        int prefSum = 0;
+        int sum = 0;
         hm[0] = 1;
         for (int i = 0 ; i < nums.size() ; i++) {
-            prefSum += nums[i];
-            int sum = prefSum % k;
+            sum = (sum + nums[i]) % k;
             if (sum < 0) {
                 sum += k;
             }
