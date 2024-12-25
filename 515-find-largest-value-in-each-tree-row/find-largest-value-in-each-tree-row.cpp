@@ -15,32 +15,31 @@ public:
         if (root == nullptr) {
             return vector<int>{};
         }
-        
-        vector<int> ans;
+
+        vector<int> res;
         queue<TreeNode*> queue;
         queue.push(root);
-        
+
         while (!queue.empty()) {
             int currentLength = queue.size();
             int currMax = INT_MIN;
-            
-            for (int i = 0; i < currentLength; i++) {
-                TreeNode* node = queue.front();
+
+            while (currentLength > 0) {
+                TreeNode* curr = queue.front();
                 queue.pop();
-                currMax = max(currMax, node->val);
-                
-                if (node->left) {
-                    queue.push(node->left);
+                currMax = max(currMax, curr->val);
+
+                if (curr->left) {
+                    queue.push(curr->left);
                 }
-                
-                if (node->right) {
-                    queue.push(node->right);
+                if (curr->right) {
+                    queue.push(curr->right);
                 }
+                currentLength -= 1;
             }
-            
-            ans.push_back(currMax);
+
+            res.push_back(currMax);
         }
-        
-        return ans;
+        return res;
     }
 };
