@@ -5,7 +5,7 @@ class Solution:
         for num in range(len(nums)):
             left = num + 1
             right = len(nums) - 1
-            if num > 0 and nums[num -1] == nums[num]:
+            if num != 0 and nums[num -1] == nums[num]:
                 continue
             while left < right:
                 threeSum = nums[left] + nums[right] + nums[num]
