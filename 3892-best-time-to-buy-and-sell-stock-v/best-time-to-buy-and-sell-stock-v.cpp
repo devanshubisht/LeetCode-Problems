@@ -53,9 +53,6 @@ public:
         int n = (int)prices.size();
         if (n == 0 || k == 0) return 0;
 
-        // cap trades: at most floor(n/2) completed cycles possible
-        k = min(k, n / 2);
-
         memo.assign(n, vector<vector<long long>>(k + 1, vector<long long>(3, 0)));
         seen.assign(n, vector<vector<char>>(k + 1, vector<char>(3, 0)));
 
